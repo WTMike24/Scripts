@@ -1,10 +1,10 @@
-Bash Scripts
+#Bash Scripts
 
-colors.list:
+#####colors.list:
 
 Included in various other scripts to allow for the use of colors on the command line (will eventually swap this out for tput)
 
-youtube-dl-batch.sh
+#####youtube-dl-batch.sh
 
 Used for downloading playlists (or individual songs) from youtube to .mp3 files.
 
