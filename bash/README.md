@@ -12,3 +12,7 @@ TODO
 
 - Have script download list of videos and asyncronously download them all at once
 - Include a separate file that has pre-defined playlists
+
+##### pinger
+
+Created for monitoring a slow and intermittent internet connection so that you can audibly hear when the connection goes down (10 pings fail) and when it comes back up afterwards
