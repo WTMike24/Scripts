@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Constantly pings $IP using the -O option to print failed pings
+# Plays a short tone when the network connection is lost/restored
+
+source "/path/to/colors.list"
+
+ip="PLACE IP ADDRESS HERE"
+yay="64 bytes from"
+no="no answer yet for"
+nop="Destination Host Unreachable"
+fails=0
+
+#Beep functions from
+#https://unix.stackexchange.com/a/163716
+
+function up() {
+ (speaker-test -tsine -f750 -l1 & pid=$!; sleep 0.2; kill -9 $pid )>/dev/null
+ (speaker-test -tsine -f750 -l1 & pid=$!; sleep 0.1; kill -9 $pid )>/dev/null
+ (speaker-test -tsine -f1000 -l1 & pid=$!; sleep 0.3; kill -9 $pid )>/dev/null
+}
+function down() {
+ (speaker-test -tsine -f1000 -l1 & pid=$!; sleep 0.1; kill -9 $pid )>/dev/null
+ (speaker-test -tsine -f850 -l1 & pid=$!; sleep 0.1; kill -9 $pid )>/dev/null
+ (speaker-test -tsine -f700 -l1 & pid=$!; sleep 0.1; kill -9 $pid )>/dev/null
+
+}
+
+while read line
+do
+ if [[ $line == *$yay* ]]; then
+  if [[ $fails -gt 10 ]]; then
+   up
+  fi
+  fails=0
+  echo -en "${NONE}${GREEN}"
+ elif [[ $line == *$no* || $line == *$nop* ]]; then
+  let "fails++"
+  if [[ $fails -eq 10 ]]; then
+   down
+  fi
+  echo -en "${NONE}${RED}"
+ else
+  echo -en "${NONE}${CYAN}"
+ fi
+
+ echo -e "${line}${RESET}"
+done < <(ping $ip -O)
