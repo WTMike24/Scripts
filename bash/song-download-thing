@@ -1,0 +1,69 @@
+#!/bin/bash
+
+#"We can't afford to host bulk downloads" they say
+#...
+#Well try and stop my script from doing it for me
+
+#edited out the real URLs because this is probably against their ToS
+#this was thrown together really quickly if you couldn't tell by the quality of the script
+
+#Constants that we will use for searching through the site
+domain="http://some.domain.here/"
+page="root/page/here"
+dlip="http://download.page.to/find"
+
+#A pseudo array that we will use so we don't get any repeat occurrences
+# has a default value because it'd match everything without one
+pseudoarray="BLUE"
+#The regex to find the top layer links
+regex="^.*(capture-the-filename\/.*\.mp3).*$"
+#The regex to find the links inside the second layer of pages
+innnerregex="^.*(capture-the-real-filename.*\.mp3).*$"
+
+while read line
+do
+ if [[ $line == *"html to find that contains the links"* ]]; then
+  #Honestly not sure why I did all the checking twice ¯\_(ツ)_/¯ 
+  if [[ $line =~ $regex ]];
+   mypath=${BASH_REMATCH[1]}
+   #If we haven't visited the song page yet...
+   if [[ $mypath != *$pseudoarray* ]]; then
+    #Add the link to the array so we don't download it more than once
+    pseudoarray+=" $mypath"
+    while read songline; do
+     if [[ $songline == *"html-to-find-that-contains-the-filename"*".mp3"* ]]; then
+      if [[ $songline =~ $innerregex ]]; then
+       songmatch=${BASH_REMATCH[1]}     #Not sure why this always returns an empty string
+       #Grab the name of the directory the song file is in so we can save it
+       dir=`echo $songline | cut -d"/" -f6`
+       #Get the name so that we can change the output file name for wget
+       name=`echo $songline | cut -d"/" -f7 | cut -d'"' -f1`
+       #Clear out the space characters (and leave the others because it didn't work anyway)
+       nicename=`echo $name | sed -e 's/%20/ /'`
+       #Because wget doesn't have its own fancy schmancy progress bar for downloads
+       echo DOWNLOADING $nicename
+       wget "$dlip/$dir/$name" -O "$nicename"
+      else
+       echo - $songline
+      fi
+     fi
+     #Curl doesn't output to stdout... which is fun...
+    done < <(curl "$domain/$mypath" 2>&1)
+   fi
+   else
+    echo - $line        #debug debug debug hooray
+  fi
+ fi
+ #Why don't you use stdout :(
+done < <(curl $page 2>&1)
+
+
+
+#Followed by many renames because wget didn't like my modified names
+#rename s/%20/ / *.mp3
+#rename s/%20/\ / *.mp3
+#rename s/%20/\ / *.mp3
+#rename s/%27/'/ *.mp3
+#rename s/%27/\'/ *.mp3
+#rename s/%21/\!/ *.mp3
+#rename s/%20/\ / *.mp3
