@@ -22,6 +22,6 @@ Created for monitoring a slow and intermittent internet connection so that you c
 
 Created to monitor the apache logs while working on a school project (watches /var/log/apache2/\*.log and has colors chosen for error.log, access.log, and other_vhosts_access.log)
 
-##### song-dowmload-thing
+##### song-download-thing
 
 A quick script I threw together because the site that had the songs I wanted to download wouldn't allow you to download them all at once for 80+ songs without a fee even though you could download them individually for free. (Couldn't find any source that gave the creators of the music any money so this is what I did instead). I edited out the real site name and HTML contents as this was probably against their ToS
