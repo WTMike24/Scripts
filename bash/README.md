@@ -11,6 +11,7 @@ Used for downloading playlists (or individual songs) from youtube to .mp3 files.
 TODO
 
 - Have script download list of videos and asyncronously download them all at once
+    (tried this downloading all at once, absolutely destroys CPU and networking, maybe look into limiting threads?)
 - Include a separate file that has pre-defined playlists
 
 ##### pinger
@@ -20,3 +21,7 @@ Created for monitoring a slow and intermittent internet connection so that you c
 ##### watchLog.sh
 
 Created to monitor the apache logs while working on a school project (watches /var/log/apache2/\*.log and has colors chosen for error.log, access.log, and other_vhosts_access.log)
+
+##### song-dowmload-thing
+
+A quick script I threw together because the site that had the songs I wanted to download wouldn't allow you to download them all at once for 80+ songs without a fee even though you could download them individually for free. (Couldn't find any source that gave the creators of the music any money so this is what I did instead). I edited out the real site name and HTML contents as this was probably against their ToS
