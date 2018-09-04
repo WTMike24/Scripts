@@ -1,1 +1,1 @@
-Screenshot storage for scripts ¯\_(ツ)_/¯ 
+Screenshot storage for scripts ¯\\\_(ツ)_/¯ 
