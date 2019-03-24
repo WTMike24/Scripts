@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while read line; do
+now=`date +%Y-%m-%d_%H:%M:%S`
+echo "$now $line"
+done
