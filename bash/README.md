@@ -22,6 +22,10 @@ Created for monitoring a slow and intermittent internet connection so that you c
 
 Created to monitor the apache logs while working on a school project (watches /var/log/apache2/\*.log and has colors chosen for error.log, access.log, and other_vhosts_access.log)
 
+##### installAsciiquarium.sh
+
+Installs [ASCIIquarium](https://robobunny.com/projects/asciiquarium/html/) onto a linux system running Ubuntu
+
 ##### stamp
 
 That's stamp as in timestamp. Prepends the current date and time to whatever you pipe to it. Useful if you have to monitor the times in which network connectivity is lost and restored. I like `ping 8.8.8.8 -O | stamp | tee pings.txt`
