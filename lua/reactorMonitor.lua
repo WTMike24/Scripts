@@ -3,7 +3,7 @@
   PATH: $HOME
   DESC: Monitors a Big Reactors reactor and displays information on a monitor
   CALL: Called from another script or from the command line
-  DATE: 2018-September-04
+  DATE: 2018-09-04
   AUTH: WTMike24
   NOTE: 4 wide 3 tall monitor to the left, single monitor on top, and wired modem on right (change reactor name below)
   ]]
