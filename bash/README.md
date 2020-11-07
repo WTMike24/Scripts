@@ -4,6 +4,10 @@
 
 Included in various other scripts to allow for the use of colors on the command line (will eventually swap this out for tput)
 
+##### convertHEICtoJPG.sh
+
+Used to automatically convert .heic files to .jpgs in a directory. Good to throw in a cronjob.
+
 ##### youtube-dl-batch.sh
 
 Used for downloading playlists (or individual songs) from youtube to .mp3 files.
