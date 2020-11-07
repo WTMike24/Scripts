@@ -18,7 +18,7 @@ for heic in *.heic; do
  # Drop the .heic extension and append .jpg instead
  jpg=`echo "$heic" | rev | cut -d. -f2- | rev`.jpg
  # If the file we are going to make does not exist, run the command to convert it
- [ -f "$jpg" ] || mogrify -format jpg "$heic"
+ [ -f "$jpg" ] || /usr/local/bin/mogrify -format jpg "$heic"
  # If we don't want the originals, give them the axe
  [ $keeporiginals -eq 0 ] && rm "$heic"
 done
